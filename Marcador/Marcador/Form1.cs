@@ -29,6 +29,9 @@ namespace Marcador
             txtHong.Text = com.getPuntosHong;
             if (com.ptOro == true)
                 ganador(2);
+            if (pnlGanadorAzul.Visible == true || pnlGanadorRojo.Visible == true)
+                if (int.Parse(com.getPuntosHong) > int.Parse(com.getPuntosChong))
+                    ganador(2);            
         }                
         Combate com;
         GamepadState a = new GamepadState(SlimDX.XInput.UserIndex.One);
@@ -71,6 +74,9 @@ namespace Marcador
             txtChong.Text = com.getPuntosChong;
             if (com.ptOro == true)
                 ganador(1);
+            if (pnlGanadorAzul.Visible == true || pnlGanadorRojo.Visible == true)
+                if (int.Parse(com.getPuntosHong) < int.Parse(com.getPuntosChong))
+                    ganador(1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -250,12 +256,19 @@ namespace Marcador
 
         public void ganador(int x)
         {
+            btnTiempoMedico.Enabled = false;
             if (btnIniciar.Enabled == false)
                 Detener.PerformClick();
             if (x == 1)
+            {
                 pnlGanadorAzul.Visible = true;
+                pnlGanadorRojo.Visible = false;
+            }
             else
+            {
+                pnlGanadorAzul.Visible = false;
                 pnlGanadorRojo.Visible = true;
+            }
         }
 
         private void frmCombate_Activated(object sender, EventArgs e)
