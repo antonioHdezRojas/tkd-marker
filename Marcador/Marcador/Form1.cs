@@ -21,31 +21,14 @@ namespace Marcador
         public frmCombate()
         {
             InitializeComponent();
-        }
-        public void mensajeReiniciar(int x)
-        {
-            tmrRound.Stop();
-            string peleador;
-            if (x == 1)
-                peleador = "azul";
-            else
-                peleador = "rojo";
-            if (MessageBox.Show("¿Terminar pelea?", " Ganador " + peleador, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)            
-                Application.Restart();
-            else
-            {
-                txtHong.Visible = true;
-                txtChong.Visible = true;
-                txtHong.BackColor = System.Drawing.Color.Red;
-                txtChong.BackColor = System.Drawing.Color.Blue;
-            }        
-                  
-        }
+        }        
         private void btnPuntoRojo_Click(object sender, EventArgs e)
         {
             btnTiempoMedico.Focus();
             com.puntoHong();
-            txtHong.Text = com.getPuntosHong;            
+            txtHong.Text = com.getPuntosHong;
+            if (com.ptOro == true)
+                ganador(2);
         }                
         Combate com;
         GamepadState a = new GamepadState(SlimDX.XInput.UserIndex.One);
@@ -85,7 +68,9 @@ namespace Marcador
         {
             btnTiempoMedico.Focus();
             com.puntoChong();
-            txtChong.Text = com.getPuntosChong;            
+            txtChong.Text = com.getPuntosChong;
+            if (com.ptOro == true)
+                ganador(1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -105,6 +90,8 @@ namespace Marcador
                 case 2:
                     txtHongKiongo1.BackColor = System.Drawing.Color.Red;
                     com.puntoChong();
+                    if (com.ptOro == true)
+                        ganador(1);
                     break;
                 case 3:
                     txtHongKiongo2.Visible = true;
@@ -134,7 +121,7 @@ namespace Marcador
                     txtHongKiongo5.BackColor = System.Drawing.Color.Red;
                     com.puntoChong();
                     txtHong.Visible = false;
-                    mensajeReiniciar(1);
+                    ganador(1);
                         break;
             }
             txtChong.Text = com.getPuntosChong;
@@ -152,6 +139,8 @@ namespace Marcador
                 case 2:
                     txtChongKiongo1.BackColor = System.Drawing.Color.Red;
                     com.puntoHong();
+                    if (com.ptOro == true)
+                        ganador(2);
                     break;
                 case 3:
                     txtChongKiongo2.Visible = true;
@@ -181,7 +170,7 @@ namespace Marcador
                     txtChongKiongo5.BackColor = System.Drawing.Color.Red;
                     com.puntoHong();
                     txtChong.Visible = false;
-                    mensajeReiniciar(2);
+                    ganador(2);
                     break;
             }
             txtHong.Text = com.getPuntosHong;
@@ -220,34 +209,9 @@ namespace Marcador
 
         private void tmrRound_Tick(object sender, EventArgs e)
         {
-            com.tiempo -= 1;
-            int min, seg;
-            if((com.tiempo / 3) > 60)
-            {
-                min = 3;
-                seg = 0;
-            }
-            else if((com.tiempo / 2) >= 60)
-            {
-                min = 2;
-                seg = com.tiempo - 120;
-            }
-            else if(com.tiempo >=60)
-            {
-                min = 1;
-                seg = com.tiempo - 60;
-            }
-            else
-            {
-                min = 0;
-                seg = com.tiempo;
-            }
-            txtCronometro.Text = min.ToString() + ":";
-            if (seg > 9)
-                txtCronometro.Text += seg;
-            else
-                txtCronometro.Text += "0" + seg;
-            if (min == 0 && seg == 0)
+            com.tiempo--;            
+            txtCronometro.Text = tiempo();
+            if (com.tiempo == 0)
             {
                 tmrRound.Stop();                                
                 if (com.round < int.Parse(_noRounds))
@@ -273,7 +237,7 @@ namespace Marcador
                             x = 1;
                         else
                             x = 2;
-                        mensajeReiniciar(x);
+                        ganador(x);
                     }
                 }
                 Detener.PerformClick();
@@ -282,6 +246,16 @@ namespace Marcador
                 d._tiempo = _tiempoD;
                 d.Show();                
             }
+        }
+
+        public void ganador(int x)
+        {
+            if (btnIniciar.Enabled == false)
+                Detener.PerformClick();
+            if (x == 1)
+                pnlGanadorAzul.Visible = true;
+            else
+                pnlGanadorRojo.Visible = true;
         }
 
         private void frmCombate_Activated(object sender, EventArgs e)
@@ -631,6 +605,8 @@ namespace Marcador
                     txtJuez3R.Visible = true;
                 else
                     txtJuez3R.Visible = false;
+                if (com.ptOro == true && (int.Parse(com.getPuntosChong) > 0 || int.Parse(com.getPuntosHong) > 0))
+                    ptOro();
             } while (true);
         }
         //crea un hilo que muere al transcurrir el tiempo indicado en x si no se marca punto
@@ -689,6 +665,58 @@ namespace Marcador
                 btnTiempoMedico.PerformClick();                         
         }
 
+        private string tiempo()
+        {
+            string aux ="";
+            int min, seg;
+            if ((com.tiempo / 5) >= 60)
+            {
+                min = 3;
+                seg = com.tiempo - 300;
+            }
+            else if ((com.tiempo / 4) >= 60)
+            {
+                min = 4;
+                seg = com.tiempo - 240;
+            }
+            else if ((com.tiempo / 3) >= 60)
+            {
+                min = 3;
+                seg = com.tiempo - 180;
+            }
+            else if ((com.tiempo / 2) >= 60)
+            {
+                min = 2;
+                seg = com.tiempo - 120;
+            }
+            else if (com.tiempo >= 60)
+            {
+                min = 1;
+                seg = com.tiempo - 60;
+            }
+            else
+            {
+                min = 0;
+                seg = com.tiempo;
+            }
+            aux = min.ToString() + ":";
+            if (seg > 9)
+                aux += seg;
+            else
+                aux += "0" + seg;
+            return aux;
+        }    
+        private void btnTiempoMas_Click(object sender, EventArgs e)
+        {
+            com.tiempo++;
+            txtCronometro.Text = tiempo();
+        }
+        private void btnTiempoMenos_Click(object sender, EventArgs e)
+        {
+            com.tiempo--;
+            txtCronometro.Text = tiempo();
+        }
+
         private void limCaraAzul3()
         {
             Thread.Sleep(x);
@@ -720,6 +748,16 @@ namespace Marcador
                 Detener.PerformClick();
             else if(Detener.Enabled == false)            
                 btnIniciar.PerformClick();            
+        }
+
+        private void ptOro()
+        {
+            if (btnIniciar.Enabled == false)
+                Detener.PerformClick();
+            if (int.Parse(com.getPuntosChong) > 0)
+                ganador(1);
+            else if (int.Parse(com.getPuntosHong) > 0)
+                ganador(2);                        
         }
 
         private void txtChong_TextChanged(object sender, EventArgs e)

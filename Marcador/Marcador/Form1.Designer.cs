@@ -67,6 +67,14 @@
             this.txtJuez3A = new System.Windows.Forms.TextBox();
             this.txtJuez2A = new System.Windows.Forms.TextBox();
             this.txtJuez1A = new System.Windows.Forms.TextBox();
+            this.pnlGanadorAzul = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pnlGanadorRojo = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnTiempoMenos = new System.Windows.Forms.Button();
+            this.btnTiempoMas = new System.Windows.Forms.Button();
+            this.pnlGanadorAzul.SuspendLayout();
+            this.pnlGanadorRojo.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnPuntoRojo
@@ -490,11 +498,75 @@
             this.txtJuez1A.TabIndex = 36;
             this.txtJuez1A.Visible = false;
             // 
+            // pnlGanadorAzul
+            // 
+            this.pnlGanadorAzul.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pnlGanadorAzul.Controls.Add(this.label8);
+            this.pnlGanadorAzul.Location = new System.Drawing.Point(12, 47);
+            this.pnlGanadorAzul.Name = "pnlGanadorAzul";
+            this.pnlGanadorAzul.Size = new System.Drawing.Size(697, 327);
+            this.pnlGanadorAzul.TabIndex = 39;
+            this.pnlGanadorAzul.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(77, 119);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(417, 108);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Ganador";
+            // 
+            // pnlGanadorRojo
+            // 
+            this.pnlGanadorRojo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pnlGanadorRojo.Controls.Add(this.label7);
+            this.pnlGanadorRojo.Location = new System.Drawing.Point(321, 47);
+            this.pnlGanadorRojo.Name = "pnlGanadorRojo";
+            this.pnlGanadorRojo.Size = new System.Drawing.Size(697, 327);
+            this.pnlGanadorRojo.TabIndex = 40;
+            this.pnlGanadorRojo.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(140, 109);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(417, 108);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Ganador";
+            // 
+            // btnTiempoMenos
+            // 
+            this.btnTiempoMenos.Location = new System.Drawing.Point(432, 24);
+            this.btnTiempoMenos.Name = "btnTiempoMenos";
+            this.btnTiempoMenos.Size = new System.Drawing.Size(23, 23);
+            this.btnTiempoMenos.TabIndex = 41;
+            this.btnTiempoMenos.Text = "-";
+            this.btnTiempoMenos.UseVisualStyleBackColor = true;
+            this.btnTiempoMenos.Click += new System.EventHandler(this.btnTiempoMenos_Click);
+            // 
+            // btnTiempoMas
+            // 
+            this.btnTiempoMas.Location = new System.Drawing.Point(465, 24);
+            this.btnTiempoMas.Name = "btnTiempoMas";
+            this.btnTiempoMas.Size = new System.Drawing.Size(23, 23);
+            this.btnTiempoMas.TabIndex = 42;
+            this.btnTiempoMas.Text = "+";
+            this.btnTiempoMas.UseVisualStyleBackColor = true;
+            this.btnTiempoMas.Click += new System.EventHandler(this.btnTiempoMas_Click);
+            // 
             // frmCombate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 522);
+            this.Controls.Add(this.btnTiempoMas);
+            this.Controls.Add(this.btnTiempoMenos);
+            this.Controls.Add(this.pnlGanadorRojo);
+            this.Controls.Add(this.pnlGanadorAzul);
             this.Controls.Add(this.txtJuez3A);
             this.Controls.Add(this.txtJuez2A);
             this.Controls.Add(this.txtJuez1A);
@@ -526,12 +598,12 @@
             this.Controls.Add(this.txtHongKiongo2);
             this.Controls.Add(this.txtHongKiongo5);
             this.Controls.Add(this.txtHongKiongo1);
-            this.Controls.Add(this.txtChong);
             this.Controls.Add(this.txtHong);
             this.Controls.Add(this.btnPuntoAzul);
             this.Controls.Add(this.btnPuntoRojo);
             this.Controls.Add(this.Detener);
             this.Controls.Add(this.btnIniciar);
+            this.Controls.Add(this.txtChong);
             this.Name = "frmCombate";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "Kyorugui";
@@ -540,6 +612,10 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCombate_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmCombate_KeyPress);
+            this.pnlGanadorAzul.ResumeLayout(false);
+            this.pnlGanadorAzul.PerformLayout();
+            this.pnlGanadorRojo.ResumeLayout(false);
+            this.pnlGanadorRojo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -585,6 +661,12 @@
         private System.Windows.Forms.TextBox txtJuez3A;
         private System.Windows.Forms.TextBox txtJuez2A;
         private System.Windows.Forms.TextBox txtJuez1A;
+        private System.Windows.Forms.Panel pnlGanadorAzul;
+        private System.Windows.Forms.Panel pnlGanadorRojo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnTiempoMenos;
+        private System.Windows.Forms.Button btnTiempoMas;
     }
 }
 
