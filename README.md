@@ -1,2 +1,2 @@
-# tkd-marker
-tkd marker system
+# tkd-Scoreboard
+tkd scoreboard system
