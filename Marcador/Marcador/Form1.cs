@@ -730,7 +730,8 @@ namespace Marcador
         }
         private void btnTiempoMenos_Click(object sender, EventArgs e)
         {
-            com.tiempo--;
+            if(com.tiempo>2)
+                com.tiempo--;
             txtCronometro.Text = tiempo();
         }
 
