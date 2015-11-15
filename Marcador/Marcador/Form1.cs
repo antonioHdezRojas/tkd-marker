@@ -64,7 +64,7 @@ namespace Marcador
             int min = int.Parse(_tiempoRound) / 60;
             int seg = int.Parse(_tiempoRound) - (min * 60);
             txtCronometro.Text = min.ToString() + ":" + seg.ToString();
-            txtRound.Text = com.round.ToString();
+            txtRound.Text = com.round.ToString();            
         }
 
         private void btnPuntoAzul_Click(object sender, EventArgs e)
@@ -242,6 +242,9 @@ namespace Marcador
                         txtHong.Text = com.getPuntosHong;
                         txtRound.Text = "0";
                         txtCronometro.Text = tiempo();
+                        frmDescanso d = new frmDescanso();
+                        d._tiempo = _tiempoD;
+                        d.Show();
                     }
                     else
                     {
@@ -747,6 +750,15 @@ namespace Marcador
             if (caraRojo1 > 0)
                 caraRojo1--;
         }
+
+        private void btnMedico_Click(object sender, EventArgs e)
+        {
+            btnTiempoMedico.Focus();
+            frmDescanso d = new frmDescanso();
+            d._tiempo = 60;
+            d.Show();                  
+        }
+
         private void limCaraRojo2()
         {
             Thread.Sleep(x);

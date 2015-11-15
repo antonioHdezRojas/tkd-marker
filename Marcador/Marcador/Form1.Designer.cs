@@ -73,6 +73,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnTiempoMenos = new System.Windows.Forms.Button();
             this.btnTiempoMas = new System.Windows.Forms.Button();
+            this.btnMedico = new System.Windows.Forms.Button();
             this.pnlGanadorAzul.SuspendLayout();
             this.pnlGanadorRojo.SuspendLayout();
             this.SuspendLayout();
@@ -441,7 +442,6 @@
             // txtJuez1R
             // 
             this.txtJuez1R.BackColor = System.Drawing.Color.Red;
-            this.txtJuez1R.Enabled = false;
             this.txtJuez1R.Location = new System.Drawing.Point(109, 21);
             this.txtJuez1R.Name = "txtJuez1R";
             this.txtJuez1R.Size = new System.Drawing.Size(18, 20);
@@ -451,7 +451,6 @@
             // txtJuez2R
             // 
             this.txtJuez2R.BackColor = System.Drawing.Color.Red;
-            this.txtJuez2R.Enabled = false;
             this.txtJuez2R.Location = new System.Drawing.Point(146, 21);
             this.txtJuez2R.Name = "txtJuez2R";
             this.txtJuez2R.Size = new System.Drawing.Size(18, 20);
@@ -461,7 +460,6 @@
             // txtJuez3R
             // 
             this.txtJuez3R.BackColor = System.Drawing.Color.Red;
-            this.txtJuez3R.Enabled = false;
             this.txtJuez3R.Location = new System.Drawing.Point(187, 21);
             this.txtJuez3R.Name = "txtJuez3R";
             this.txtJuez3R.Size = new System.Drawing.Size(18, 20);
@@ -471,7 +469,6 @@
             // txtJuez3A
             // 
             this.txtJuez3A.BackColor = System.Drawing.Color.Blue;
-            this.txtJuez3A.Enabled = false;
             this.txtJuez3A.Location = new System.Drawing.Point(890, 21);
             this.txtJuez3A.Name = "txtJuez3A";
             this.txtJuez3A.Size = new System.Drawing.Size(18, 20);
@@ -481,7 +478,6 @@
             // txtJuez2A
             // 
             this.txtJuez2A.BackColor = System.Drawing.Color.Blue;
-            this.txtJuez2A.Enabled = false;
             this.txtJuez2A.Location = new System.Drawing.Point(849, 21);
             this.txtJuez2A.Name = "txtJuez2A";
             this.txtJuez2A.Size = new System.Drawing.Size(18, 20);
@@ -491,7 +487,6 @@
             // txtJuez1A
             // 
             this.txtJuez1A.BackColor = System.Drawing.Color.Blue;
-            this.txtJuez1A.Enabled = false;
             this.txtJuez1A.Location = new System.Drawing.Point(812, 21);
             this.txtJuez1A.Name = "txtJuez1A";
             this.txtJuez1A.Size = new System.Drawing.Size(18, 20);
@@ -558,11 +553,22 @@
             this.btnTiempoMas.UseVisualStyleBackColor = true;
             this.btnTiempoMas.Click += new System.EventHandler(this.btnTiempoMas_Click);
             // 
+            // btnMedico
+            // 
+            this.btnMedico.Location = new System.Drawing.Point(634, 402);
+            this.btnMedico.Name = "btnMedico";
+            this.btnMedico.Size = new System.Drawing.Size(75, 23);
+            this.btnMedico.TabIndex = 43;
+            this.btnMedico.Text = "Medico";
+            this.btnMedico.UseVisualStyleBackColor = true;
+            this.btnMedico.Click += new System.EventHandler(this.btnMedico_Click);
+            // 
             // frmCombate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 522);
+            this.Controls.Add(this.btnMedico);
             this.Controls.Add(this.pnlGanadorAzul);
             this.Controls.Add(this.pnlGanadorRojo);
             this.Controls.Add(this.btnTiempoMas);
@@ -667,6 +673,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnTiempoMenos;
         private System.Windows.Forms.Button btnTiempoMas;
+        private System.Windows.Forms.Button btnMedico;
     }
 }
 

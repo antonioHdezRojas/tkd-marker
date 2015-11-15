@@ -61,7 +61,6 @@
             this.ClientSize = new System.Drawing.Size(644, 352);
             this.Controls.Add(this.txtCronometro);
             this.Name = "frmDescanso";
-            this.Text = "frmDescanso";
             this.Load += new System.EventHandler(this.frmDescanso_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
