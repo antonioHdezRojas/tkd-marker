@@ -224,6 +224,11 @@ namespace Marcador
                 {
                     com.tiempo = int.Parse(_tiempoRound);
                     com.round++;
+                    Detener.PerformClick();
+                    txtRound.Text = com.round.ToString();
+                    frmDescanso d = new frmDescanso();
+                    d._tiempo = _tiempoD;
+                    d.Show();
                 }
                 else
                 {
@@ -235,6 +240,8 @@ namespace Marcador
                         com.borraPts();
                         txtChong.Text = com.getPuntosChong;
                         txtHong.Text = com.getPuntosHong;
+                        txtRound.Text = "0";
+                        txtCronometro.Text = tiempo();
                     }
                     else
                     {
@@ -245,12 +252,7 @@ namespace Marcador
                             x = 2;
                         ganador(x);
                     }
-                }
-                Detener.PerformClick();
-                txtRound.Text = com.round.ToString();                               
-                frmDescanso d = new frmDescanso();
-                d._tiempo = _tiempoD;
-                d.Show();                
+                }                          
             }
         }
 
@@ -259,23 +261,25 @@ namespace Marcador
             btnTiempoMedico.Enabled = false;
             if (btnIniciar.Enabled == false)
                 Detener.PerformClick();
+            txtCronometro.Visible = false;
             if (x == 1)
             {
                 pnlGanadorAzul.Visible = true;
                 pnlGanadorRojo.Visible = false;
+                txtHong.Visible = false;
             }
             else
             {
                 pnlGanadorAzul.Visible = false;
                 pnlGanadorRojo.Visible = true;
+                txtChong.Visible = false;
             }
+            matarHilos();
         }
 
         private void frmCombate_Activated(object sender, EventArgs e)
         {
-            int min = int.Parse(_tiempoRound) / 60;
-            int seg = int.Parse(_tiempoRound) - (min * 60);
-            txtCronometro.Text = min.ToString() + ":" + seg.ToString();            
+            txtCronometro.Text = tiempo();
             delA = new ThreadStart(juez1);
             delB = new ThreadStart(juez2);
             delC = new ThreadStart(juez3);
@@ -777,8 +781,7 @@ namespace Marcador
         {
 
         }
-
-        private void frmCombate_FormClosed(object sender, FormClosedEventArgs e)
+        private void matarHilos()
         {
             hiloJuez1.Abort();
             hiloJuez2.Abort();
@@ -786,12 +789,14 @@ namespace Marcador
             hiloPuntos.Abort();
         }
 
+        private void frmCombate_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            matarHilos();
+        }
+
         private void frmCombate_Deactivate(object sender, EventArgs e)
         {
-            hiloJuez1.Abort();
-            hiloJuez2.Abort();
-            hiloJuez3.Abort();
-            hiloPuntos.Abort();
+            matarHilos();            
         }
     }
 }

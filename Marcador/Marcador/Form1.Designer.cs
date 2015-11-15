@@ -563,10 +563,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 522);
+            this.Controls.Add(this.pnlGanadorAzul);
+            this.Controls.Add(this.pnlGanadorRojo);
             this.Controls.Add(this.btnTiempoMas);
             this.Controls.Add(this.btnTiempoMenos);
-            this.Controls.Add(this.pnlGanadorRojo);
-            this.Controls.Add(this.pnlGanadorAzul);
             this.Controls.Add(this.txtJuez3A);
             this.Controls.Add(this.txtJuez2A);
             this.Controls.Add(this.txtJuez1A);
@@ -598,12 +598,12 @@
             this.Controls.Add(this.txtHongKiongo2);
             this.Controls.Add(this.txtHongKiongo5);
             this.Controls.Add(this.txtHongKiongo1);
-            this.Controls.Add(this.txtHong);
             this.Controls.Add(this.btnPuntoAzul);
             this.Controls.Add(this.btnPuntoRojo);
             this.Controls.Add(this.Detener);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.txtChong);
+            this.Controls.Add(this.txtHong);
             this.Name = "frmCombate";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "Kyorugui";

@@ -53,45 +53,46 @@ namespace Whatever
         {
 
             // If not connected, nothing to update
-            if (!Connected) return;
-
+            if (Connected)
             // If same packet, nothing to update
-            State state = Controller.GetState();
-            if (lastPacket == state.PacketNumber) return;
-            lastPacket = state.PacketNumber;
+            {                
+                State state = Controller.GetState();
+                if (lastPacket == state.PacketNumber) return;
+                lastPacket = state.PacketNumber;
 
-            var gamepadState = state.Gamepad;
+                var gamepadState = state.Gamepad;
 
-            // Shoulders
-            LeftShoulder = (gamepadState.Buttons & GamepadButtonFlags.LeftShoulder) != 0;
-            RightShoulder = (gamepadState.Buttons & GamepadButtonFlags.RightShoulder) != 0;
+                // Shoulders
+                LeftShoulder = (gamepadState.Buttons & GamepadButtonFlags.LeftShoulder) != 0;
+                RightShoulder = (gamepadState.Buttons & GamepadButtonFlags.RightShoulder) != 0;
 
-            // Triggers
-            LeftTrigger = gamepadState.LeftTrigger / (float)byte.MaxValue;
-            RightTrigger = gamepadState.RightTrigger / (float)byte.MaxValue;
+                // Triggers
+                LeftTrigger = gamepadState.LeftTrigger / (float)byte.MaxValue;
+                RightTrigger = gamepadState.RightTrigger / (float)byte.MaxValue;
 
-            // Buttons
-            Start = (gamepadState.Buttons & GamepadButtonFlags.Start) != 0;
-            Back = (gamepadState.Buttons & GamepadButtonFlags.Back) != 0;
+                // Buttons
+                Start = (gamepadState.Buttons & GamepadButtonFlags.Start) != 0;
+                Back = (gamepadState.Buttons & GamepadButtonFlags.Back) != 0;
 
-            A = (gamepadState.Buttons & GamepadButtonFlags.A) != 0;
-            B = (gamepadState.Buttons & GamepadButtonFlags.B) != 0;
-            X = (gamepadState.Buttons & GamepadButtonFlags.X) != 0;
-            Y = (gamepadState.Buttons & GamepadButtonFlags.Y) != 0;
+                A = (gamepadState.Buttons & GamepadButtonFlags.A) != 0;
+                B = (gamepadState.Buttons & GamepadButtonFlags.B) != 0;
+                X = (gamepadState.Buttons & GamepadButtonFlags.X) != 0;
+                Y = (gamepadState.Buttons & GamepadButtonFlags.Y) != 0;
 
-            // D-Pad
-            DPad = new DPadState((gamepadState.Buttons & GamepadButtonFlags.DPadUp) != 0,
-                                 (gamepadState.Buttons & GamepadButtonFlags.DPadDown) != 0,
-                                 (gamepadState.Buttons & GamepadButtonFlags.DPadLeft) != 0,
-                                 (gamepadState.Buttons & GamepadButtonFlags.DPadRight) != 0);
+                // D-Pad
+                DPad = new DPadState((gamepadState.Buttons & GamepadButtonFlags.DPadUp) != 0,
+                                     (gamepadState.Buttons & GamepadButtonFlags.DPadDown) != 0,
+                                     (gamepadState.Buttons & GamepadButtonFlags.DPadLeft) != 0,
+                                     (gamepadState.Buttons & GamepadButtonFlags.DPadRight) != 0);
 
-            // Thumbsticks
-            LeftStick = new ThumbstickState(
-                Normalize(gamepadState.LeftThumbX, gamepadState.LeftThumbY, Gamepad.GamepadLeftThumbDeadZone),
-                (gamepadState.Buttons & GamepadButtonFlags.LeftThumb) != 0);
-            RightStick = new ThumbstickState(
-                Normalize(gamepadState.RightThumbX, gamepadState.RightThumbY, Gamepad.GamepadRightThumbDeadZone),
-                (gamepadState.Buttons & GamepadButtonFlags.RightThumb) != 0);
+                // Thumbsticks
+                LeftStick = new ThumbstickState(
+                    Normalize(gamepadState.LeftThumbX, gamepadState.LeftThumbY, Gamepad.GamepadLeftThumbDeadZone),
+                    (gamepadState.Buttons & GamepadButtonFlags.LeftThumb) != 0);
+                RightStick = new ThumbstickState(
+                    Normalize(gamepadState.RightThumbX, gamepadState.RightThumbY, Gamepad.GamepadRightThumbDeadZone),
+                    (gamepadState.Buttons & GamepadButtonFlags.RightThumb) != 0);
+            }
         }
 
         static Vector2 Normalize(short rawX, short rawY, short threshold)
