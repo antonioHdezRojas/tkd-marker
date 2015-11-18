@@ -768,8 +768,8 @@ namespace Marcador
         private void limCaraRojo3()
         {
             Thread.Sleep(x);
-            if (caraRojo2 > 0)
-                caraRojo2--;
+            if (caraRojo3 > 0)
+                caraRojo3--;
         }
 
         private void btnTiempoMedico_Click(object sender, EventArgs e)
